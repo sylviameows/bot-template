@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "target": "ES6",
+      "lib": [
+        "es5", "es6", "dom", "dom.iterable"
+      ]
+    }
+  }
