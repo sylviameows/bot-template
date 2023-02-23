@@ -1,10 +1,10 @@
-import { AutocompleteInteraction, ChatInputCommandInteraction, Events } from "discord.js";
+import { AutocompleteInteraction, ChatInputCommandInteraction, Events, PermissionResolvable } from "discord.js";
 
 /**
  * Represents a command.
  * @param {string} name - The name of the command.
  * @param {string} description - The descrtiption of the command.
- * @param {bigint | PermissionsBitField} permission - The permission required to run the command.
+ * @param {PermissionResolvable} permission - The permission required for the bot to run the command.
  * @param {string} usage - How to use the command. For help command.
  * @param {method} run - What runs when the command is used.
  * @param {method} autocomplete - What runs when autocomplete is enabled.
@@ -13,7 +13,7 @@ import { AutocompleteInteraction, ChatInputCommandInteraction, Events } from "di
 declare interface Command {
   name: string,
   description: string,
-  permission?: bigint,
+  permission?: PermissionResolvable,
   usage: string,
 
   run(i: ChatInputCommandInteraction): Promise<void>,

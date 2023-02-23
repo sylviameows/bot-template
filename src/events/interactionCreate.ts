@@ -1,5 +1,4 @@
-import { ActivityType, CommandInteraction, Events, Interaction } from "discord.js";
-import { client } from "..";
+import { Events, Interaction, PermissionsBitField } from "discord.js";
 import { BotEvent } from "../types/declarations";
 import logger from "../util/logger";
 
@@ -27,6 +26,23 @@ const data: BotEvent = {
         i.reply({content: "The command you're trying to run does not exist, contact the bot developer if you think this is an error.", ephemeral: true})
         logger.warn(`Command ${i.commandName} does not exist, this may be an issue or a command may not have been deleted.`)
         return
+      }
+      if (!i.guild) {
+        i.reply({content: "You can only run commands in guilds!", ephemeral: true})
+        logger.warn(`Command ${i.commandName} was ran outside of a guild!`)
+        return
+      }
+
+      if (command.permission) {
+        if (!i.guild.members.me) throw new Error(`Could not find the clients member in ${i.guild.id}`)
+        const permissions: PermissionsBitField = i.guild.members.me.permissions
+
+        if (!permissions.has(command.permission)) {
+          const missing = permissions.missing(command.permission).join(", ")
+
+          i.reply({ content: `I am missing the permissions to run \`/${command.name}\`, contact a staff member if you think this is an error. \nMissing: \`${missing}\``, ephemeral: true})
+          return
+        }
       }
 
       try {
