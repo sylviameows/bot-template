@@ -1,4 +1,4 @@
-import { Client, ClientEvents, Collection, REST, Routes } from "discord.js"
+import { Client, Collection, REST, Routes } from "discord.js"
 
 import fs from 'node:fs'
 import path from 'node:path'
