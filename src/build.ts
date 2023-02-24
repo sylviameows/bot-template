@@ -14,6 +14,7 @@ export default async (client: Client) => {
 
   buildEvents();
   client.commands = await buildCommands(token, appId);
+  client.cooldown = new Collection();
 };
 
 const buildEvents = () => {

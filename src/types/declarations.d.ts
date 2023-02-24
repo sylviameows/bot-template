@@ -18,8 +18,9 @@ import {
 declare interface Command {
   name: string;
   description: string;
-  permission?: PermissionResolvable;
   usage: string;
+  permission?: PermissionResolvable;
+  cooldown?: number;
 
   run(i: ChatInputCommandInteraction): Promise<void>;
   autocomplete?(i: AutocompleteInteraction): Promise<void>;

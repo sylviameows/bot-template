@@ -43,6 +43,17 @@ const data: BotEvent = {
         return;
       }
 
+      let cooldown =
+        i.client.cooldown.get(`${i.user.id}:${i.guild.id}`) ??
+        new Array<string>();
+      if (cooldown && cooldown.includes(command.name)) {
+        i.reply({
+          content: `This command is on cooldown for \`${command.cooldown} secs\`, try again later.`,
+          ephemeral: true,
+        });
+        return;
+      }
+
       if (command.permission) {
         if (!i.guild.members.me)
           throw new Error(`Could not find the clients member in ${i.guild.id}`);
@@ -61,6 +72,17 @@ const data: BotEvent = {
 
       try {
         await command.run(i);
+        if (command.cooldown) {
+          cooldown.push(command.name);
+          i.client.cooldown.set(`${i.user.id}:${i.guild.id}`, cooldown);
+          setTimeout(() => {
+            cooldown =
+              i.client.cooldown.get(`${i.user.id}:${i.guild!.id}`) ??
+              new Array<string>();
+            cooldown.splice(cooldown.indexOf(command.name), 1);
+            i.client.cooldown.set(`${i.user.id}:${i.guild!.id}`, cooldown);
+          }, command.cooldown * 1000);
+        }
       } catch (e) {
         logger.error(e);
 
