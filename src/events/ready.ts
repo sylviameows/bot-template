@@ -6,8 +6,7 @@ import logger from "../util/logger";
 const data: BotEvent = {
   type: Events.ClientReady,
   once: true,
-  // eslint-disable-next-line @typescript-eslint/require-await
-  run: async () => {
+  run: () => {
     if (!client.user || !client.application) {
       throw new Error("Issue during startup, missing client.");
     }

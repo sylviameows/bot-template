@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Client, Collection, REST, Routes } from "discord.js";
@@ -29,7 +30,6 @@ const buildEvents = () => {
         .then((rawEvent) => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           const event: BotEvent = rawEvent.default;
-          // Register the events to run.
           if (event.once)
             client.once(event.type, (...args) => event.run(...args));
           else client.on(event.type, (...args) => event.run(...args));

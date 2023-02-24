@@ -36,5 +36,5 @@ declare interface Command {
 declare interface BotEvent {
   type: string;
   once?: boolean;
-  run(...args: any): Promise<void>;
+  run(...args: any): void;
 }
