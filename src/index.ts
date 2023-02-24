@@ -1,11 +1,8 @@
-import {
-  Client,
-  GatewayIntentBits
-} from 'discord.js';
+import { Client, GatewayIntentBits } from "discord.js";
 
-import 'dotenv/config';
-import build from './build';
-import logger from './util/logger';
+import "dotenv/config";
+import build from "./build";
+import logger from "./util/logger";
 
 export const client: Client = new Client({
   intents: [
@@ -13,13 +10,14 @@ export const client: Client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.MessageContent,
-  ]
+  ],
 });
 
-build(client).catch(e => {
-  logger.error(e)
-  process.exit(1);
-}).then(() => {
-  client.login(process.env.TOKEN)
-})
-
+build(client)
+  .catch((e) => {
+    logger.error(e);
+    process.exit(1);
+  })
+  .then(() => {
+    client.login(process.env.TOKEN);
+  });

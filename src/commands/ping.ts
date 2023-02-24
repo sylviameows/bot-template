@@ -7,14 +7,14 @@ const data: Command = {
   usage: "/ping",
 
   run: async (i) => {
-    const ping = Date.now() - i.createdTimestamp
+    const ping = Date.now() - i.createdTimestamp;
     i.reply({
-      content: `:ping_pong: Pong! \n Bot Latency: \`${ping}ms\``
-    })
+      content: `:ping_pong: Pong! \n Bot Latency: \`${ping}ms\``,
+    });
   },
   builder: new SlashCommandBuilder()
     .setName("ping")
-    .setDescription("Get the bots latency.")
-}
+    .setDescription("Get the bots latency."),
+};
 
-export default data
+export default data;
