@@ -13,6 +13,7 @@
   "author": "Vae",
   "license": "AGPL-3",
   "dependencies": {
+    "@types/moment-duration-format": "^2.2.3",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "moment": "^2.29.4",

@@ -13,11 +13,11 @@ export const client: Client = new Client({
   ],
 });
 
-build(client)
+void build(client)
   .catch((e) => {
     logger.error(e);
     process.exit(1);
   })
   .then(() => {
-    client.login(process.env.TOKEN);
+    void client.login(process.env.TOKEN);
   });

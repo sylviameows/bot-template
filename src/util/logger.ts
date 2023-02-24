@@ -1,6 +1,7 @@
 import { createLogger, transports, format } from "winston";
 
 const logFormat = format.printf(({ level, message, timestamp, stack }) => {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   return `${timestamp} . ${level}: ${stack || message}`;
 });
 
@@ -48,6 +49,8 @@ export default {
   error: logger.error.bind(logger),
   crit: logger.crit.bind(logger),
 
-  // @ts-ignore (type is created later on.)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore - type exists but it doesn't see it in the code.
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   success: logger.success.bind(logger),
 };

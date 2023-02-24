@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/moment-duration-format': ^2.2.3
   '@typescript-eslint/eslint-plugin': ^5.53.0
   '@typescript-eslint/parser': ^5.53.0
   discord.js: ^14.7.1
@@ -15,6 +16,7 @@ specifiers:
   winston: ^3.8.2
 
 dependencies:
+  '@types/moment-duration-format': 2.2.3
   discord.js: 14.7.1
   dotenv: 16.0.3
   moment: 2.29.4
@@ -383,6 +385,12 @@ packages:
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
+
+  /@types/moment-duration-format/2.2.3:
+    resolution: {integrity: sha512-NQrnFOX1PTvHY8OH1aLoZntAkc2ad/1Cdl31UWIEaqBpDJ/m5SwfFBtFaX7TBLavASeLxG8DL7rm3NHKCLduaA==}
+    dependencies:
+      moment: 2.29.4
+    dev: false
 
   /@types/node/18.14.1:
     resolution: {integrity: sha512-QH+37Qds3E0eDlReeboBxfHbX9omAcBCXEzswCu6jySP642jiM3cYSIkU/REqwhCUqXdonHFuBfJDiAJxMNhaQ==}
