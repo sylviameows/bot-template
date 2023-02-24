@@ -8,19 +8,23 @@ const data: BotEvent = {
   once: true,
   run: async () => {
     if (!client.user || !client.application) {
-      throw new Error("Issue during startup, missing client.")
-    };
+      throw new Error("Issue during startup, missing client.");
+    }
 
-    logger.success(`Ready as ${client.user.tag}.`)
+    logger.success(`Ready as ${client.user.tag}.`);
 
-    client.user.presence.set({ // docs: https://discord.js.org/#/docs/main/stable/typedef/PresenceData
-      activities: [{ // docs: https://discord.js.org/#/docs/main/stable/typedef/ActivitiesOptions
-        name: `${client.guilds.cache.size} servers`,
-        type: ActivityType.Listening,
-      }],
-      status: 'online',
+    client.user.presence.set({
+      // docs: https://discord.js.org/#/docs/main/stable/typedef/PresenceData
+      activities: [
+        {
+          // docs: https://discord.js.org/#/docs/main/stable/typedef/ActivitiesOptions
+          name: `${client.guilds.cache.size} servers`,
+          type: ActivityType.Listening,
+        },
+      ],
+      status: "online",
     });
-  }
-}
+  },
+};
 
-export default data
+export default data;

@@ -1,4 +1,9 @@
-import { AutocompleteInteraction, ChatInputCommandInteraction, Events, PermissionResolvable } from "discord.js";
+import {
+  AutocompleteInteraction,
+  ChatInputCommandInteraction,
+  Events,
+  PermissionResolvable,
+} from "discord.js";
 
 /**
  * Represents a command.
@@ -11,14 +16,15 @@ import { AutocompleteInteraction, ChatInputCommandInteraction, Events, Permissio
  * @param {SlashCommandBuilder} builder - What is used to deploy the command.
  */
 declare interface Command {
-  name: string,
-  description: string,
-  permission?: PermissionResolvable,
-  usage: string,
+  name: string;
+  description: string;
+  usage: string;
+  permission?: PermissionResolvable;
+  cooldown?: number;
 
-  run(i: ChatInputCommandInteraction): Promise<void>,
-  autocomplete?(i: AutocompleteInteraction): Promise<void>,
-  builder: any
+  run(i: ChatInputCommandInteraction): Promise<void>;
+  autocomplete?(i: AutocompleteInteraction): Promise<void>;
+  builder: any;
 }
 
 /**
@@ -28,7 +34,7 @@ declare interface Command {
  * @param {method} run - Runs when the event is called.
  */
 declare interface BotEvent {
-  type: Events,
-  once?: boolean,
-  run(...args: any): Promise<void>
+  type: Events;
+  once?: boolean;
+  run(...args: any): Promise<void>;
 }

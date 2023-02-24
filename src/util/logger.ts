@@ -1,6 +1,6 @@
-import {createLogger, transports, format} from 'winston';
+import { createLogger, transports, format } from "winston";
 
-const logFormat = format.printf(({level, message, timestamp, stack}) => {
+const logFormat = format.printf(({ level, message, timestamp, stack }) => {
   return `${timestamp} . ${level}: ${stack || message}`;
 });
 
@@ -15,22 +15,28 @@ const levels = {
     silly: 6,
   },
   colors: {
-    crit: 'bold black redBG',
-    error: 'red',
-    warn: 'yellow',
-    success: 'green',
-    info: 'cyan',
-    debug: 'magenta',
-    silly: 'white'
-  }
-}
+    crit: "bold black redBG",
+    error: "red",
+    warn: "yellow",
+    success: "green",
+    info: "cyan",
+    debug: "magenta",
+    silly: "white",
+  },
+};
 
 const logger = createLogger({
-  format: format.combine(format.colorize({ colors: levels.colors}), format.timestamp({format: 'YYYY-MM-DD HH:mm:SS'}), format.errors({stack: true}), format.align(),logFormat),
+  format: format.combine(
+    format.colorize({ colors: levels.colors }),
+    format.timestamp({ format: "YYYY-MM-DD HH:mm:SS" }),
+    format.errors({ stack: true }),
+    format.align(),
+    logFormat
+  ),
   levels: levels.levels,
   transports: [
     new transports.Console(),
-    new transports.File({ filename: 'error.log', level: 'warn'})
+    new transports.File({ filename: "error.log", level: "warn" }),
   ],
 });
 
