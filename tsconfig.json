@@ -4,10 +4,8 @@
       "outDir": "./dist",
       "rootDir": "./src",
       "strict": true,
+      "sourceMap": true,
       "esModuleInterop": true,
-      "target": "ES6",
-      "lib": [
-        "es5", "es6", "dom", "dom.iterable"
-      ]
+      "target": "ES2022"
     }
-  }
+}

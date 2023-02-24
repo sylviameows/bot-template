@@ -30,20 +30,13 @@ const data: Command = {
       return
     }
 
-    await i.deferReply()
-    
-    const avatar = client.user.avatarURL()
-    const author = avatar ? { name: `${client.user.username}'s help page.`, iconURL: avatar } : { name: `${client.user.username}'s help page.` }
-    let embed = new EmbedBuilder()
-      .setAuthor(author)
-      .setColor(0x2F3136)
-
     const inline = client.commands.size >= 9 ? true : false
+    let embed = new EmbedBuilder()
     client.commands.forEach(command => {
       embed = embed.addFields({name: `/${command.name}`, value: `${command.description}`, inline: inline})
     })
 
-    i.editReply({embeds: [embed]})
+    i.reply({embeds: [embed]})
   },
   autocomplete: async (i) => {
     const focused = i.options.getFocused()

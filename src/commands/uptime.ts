@@ -2,6 +2,8 @@ import { SlashCommandBuilder, time } from "discord.js";
 import { client } from "..";
 import { Command } from "../types/declarations";
 
+import moment from "moment";
+import("moment-duration-format")
 
 const data: Command = {
   name: "uptime",
@@ -15,8 +17,6 @@ const data: Command = {
       throw new Error("Uptime/timestamp is missing from the client ")
     }
 
-    const moment = require("moment");
-    require("moment-duration-format");
     const duration = moment.duration(uptime).format(" D [days], H [hrs], m [mins], s [secs]")
 
     i.reply({

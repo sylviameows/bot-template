@@ -7,9 +7,8 @@ const data: Command = {
   usage: "/ping",
 
   run: async (i) => {
-    await i.deferReply();
     const ping = Date.now() - i.createdTimestamp
-    i.editReply({
+    i.reply({
       content: `:ping_pong: Pong! \n Bot Latency: \`${ping}ms\``
     })
   },
