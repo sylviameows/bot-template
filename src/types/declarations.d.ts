@@ -22,8 +22,8 @@ declare interface Command {
   permission?: PermissionResolvable;
   cooldown?: number;
 
-  run(i: ChatInputCommandInteraction): Promise<void>;
-  autocomplete?(i: AutocompleteInteraction): Promise<void>;
+  run(i: ChatInputCommandInteraction): void | Promise<void>;
+  autocomplete?(i: AutocompleteInteraction): void | Promise<void>;
   builder: any;
 }
 
@@ -36,5 +36,5 @@ declare interface Command {
 declare interface BotEvent {
   type: string;
   once?: boolean;
-  run(...args: any): void;
+  run(...args: any): void | Promise<void>;
 }
