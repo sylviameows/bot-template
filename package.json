@@ -2,7 +2,7 @@
   "name": "bot-template",
   "version": "1.0.0",
   "description": "A discord.js bot template in TypeScript.",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "main": "src/index.ts",
   "scripts": {
     "start": "tsx src/index.ts",
