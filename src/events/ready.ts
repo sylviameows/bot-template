@@ -6,11 +6,12 @@ import logger from "../util/logger";
 const data: BotEvent = {
   type: Events.ClientReady,
   once: true,
-  run: async () => {
+  run: () => {
     if (!client.user || !client.application) {
       throw new Error("Issue during startup, missing client.");
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     logger.success(`Ready as ${client.user.tag}.`);
 
     client.user.presence.set({

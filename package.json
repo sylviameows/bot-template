@@ -1,7 +1,8 @@
 {
-  "name": "template-bot",
+  "name": "bot-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "A discord.js bot template in TypeScript.",
+  "license": "AGPL-3.0",
   "main": "src/index.ts",
   "scripts": {
     "start": "tsx src/index.ts",
@@ -9,10 +10,19 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
   },
-  "keywords": [],
-  "author": "Vae",
-  "license": "AGPL-3",
+  "maintainers": [{
+    "name": "Vae",
+    "url": "https://github.com/vulpic"
+  },{
+    "name": "Restitutor",
+    "url": "https://github.com/Restitutor"
+  }],
+  "bugs": {
+    "url": "https://github.com/vulpic/bot-template/issues"
+  },
+  "keywords": ["discord.js", "typescript", "discord bot", "discord"],
   "dependencies": {
+    "@types/moment-duration-format": "^2.2.3",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "moment": "^2.29.4",

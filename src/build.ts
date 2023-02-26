@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Client, Collection, REST, Routes } from "discord.js";
 
 import fs from "node:fs";
@@ -25,8 +28,8 @@ const buildEvents = () => {
     .forEach((filePath) => {
       import(filePath)
         .then((rawEvent) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           const event: BotEvent = rawEvent.default;
-          // Register the events to run.
           if (event.once)
             client.once(event.type, (...args) => event.run(...args));
           else client.on(event.type, (...args) => event.run(...args));
@@ -41,7 +44,7 @@ const buildEvents = () => {
 
 const buildCommands = async (token: string, appId: string) => {
   const commands: Collection<string, Command> = new Collection();
-  const commandsJSON: any[] = [];
+  const commandsJSON: unknown[] = [];
 
   const commandsPath = "src/commands";
   const promises = fs
@@ -51,6 +54,7 @@ const buildCommands = async (token: string, appId: string) => {
     .map((filePath) => {
       return import(filePath)
         .then((rawCommand) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           const command: Command = rawCommand.default;
           commands.set(command.name, command);
           commandsJSON.push(command.builder.toJSON());

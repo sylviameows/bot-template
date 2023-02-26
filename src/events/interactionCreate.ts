@@ -24,7 +24,7 @@ const data: BotEvent = {
     if (i.isChatInputCommand()) {
       const command = i.client.commands.get(i.commandName);
       if (!command) {
-        i.reply({
+        await i.reply({
           content:
             "The command you're trying to run does not exist, contact the bot developer if you think this is an error.",
           ephemeral: true,
@@ -35,7 +35,7 @@ const data: BotEvent = {
         return;
       }
       if (!i.guild) {
-        i.reply({
+        await i.reply({
           content: "You can only run commands in guilds!",
           ephemeral: true,
         });
@@ -47,7 +47,9 @@ const data: BotEvent = {
         i.client.cooldown.get(`${i.user.id}:${i.guild.id}`) ??
         new Array<string>();
       if (cooldown && cooldown.includes(command.name)) {
-        i.reply({
+        if (!command.cooldown)
+          throw new Error("Tried to call a cooldown when there was none.");
+        await i.reply({
           content: `This command is on cooldown for \`${command.cooldown} secs\`, try again later.`,
           ephemeral: true,
         });
@@ -62,7 +64,7 @@ const data: BotEvent = {
         if (!permissions.has(command.permission)) {
           const missing = permissions.missing(command.permission).join(", ");
 
-          i.reply({
+          await i.reply({
             content: `I am missing the permissions to run \`/${command.name}\`, contact a staff member if you think this is an error. \nMissing: \`${missing}\``,
             ephemeral: true,
           });
@@ -76,11 +78,12 @@ const data: BotEvent = {
           cooldown.push(command.name);
           i.client.cooldown.set(`${i.user.id}:${i.guild.id}`, cooldown);
           setTimeout(() => {
+            if (i.guild == null) return;
             cooldown =
-              i.client.cooldown.get(`${i.user.id}:${i.guild!.id}`) ??
+              i.client.cooldown.get(`${i.user.id}:${i.guild.id}`) ??
               new Array<string>();
             cooldown.splice(cooldown.indexOf(command.name), 1);
-            i.client.cooldown.set(`${i.user.id}:${i.guild!.id}`, cooldown);
+            i.client.cooldown.set(`${i.user.id}:${i.guild.id}`, cooldown);
           }, command.cooldown * 1000);
         }
       } catch (e) {
@@ -92,7 +95,7 @@ const data: BotEvent = {
             ephemeral: true,
           })
           .catch(() => {
-            i.editReply({
+            void i.editReply({
               content: "There was an issue running this command!",
             });
           });

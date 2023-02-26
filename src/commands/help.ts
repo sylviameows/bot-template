@@ -14,7 +14,10 @@ const data: Command = {
     if (select) {
       const command = client.commands.get(select);
       if (!command) {
-        i.reply({ content: "That command does not exist.", ephemeral: true });
+        await i.reply({
+          content: "That command does not exist.",
+          ephemeral: true,
+        });
         return;
       }
 
@@ -28,7 +31,7 @@ const data: Command = {
         .setFooter({ text: command.usage })
         .setColor(0x2f3136);
 
-      i.reply({ embeds: [embed] });
+      await i.reply({ embeds: [embed] });
       return;
     }
 
@@ -42,7 +45,7 @@ const data: Command = {
       });
     });
 
-    i.reply({ embeds: [embed] });
+    await i.reply({ embeds: [embed] });
   },
   autocomplete: async (i) => {
     const focused = i.options.getFocused();

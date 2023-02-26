@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   AutocompleteInteraction,
   ChatInputCommandInteraction,
-  Events,
   PermissionResolvable,
 } from "discord.js";
 
@@ -22,8 +22,8 @@ declare interface Command {
   permission?: PermissionResolvable;
   cooldown?: number;
 
-  run(i: ChatInputCommandInteraction): Promise<void>;
-  autocomplete?(i: AutocompleteInteraction): Promise<void>;
+  run(i: ChatInputCommandInteraction): void | Promise<void>;
+  autocomplete?(i: AutocompleteInteraction): void | Promise<void>;
   builder: any;
 }
 
@@ -34,7 +34,7 @@ declare interface Command {
  * @param {method} run - Runs when the event is called.
  */
 declare interface BotEvent {
-  type: Events;
+  type: string;
   once?: boolean;
-  run(...args: any): Promise<void>;
+  run(...args: any): void | Promise<void>;
 }

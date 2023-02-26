@@ -17,11 +17,11 @@ const data: Command = {
       throw new Error("Uptime/timestamp is missing from the client ");
     }
 
-    const duration = moment
+    const duration: string = moment
       .duration(uptime)
       .format(" D [days], H [hrs], m [mins], s [secs]");
 
-    i.reply({
+    await i.reply({
       content: `:stopwatch: Uptime: \`${duration}\``, // optional addition for a timestamp: \n${time((Math.floor(timestamp/1000)), 'f')}
     });
   },
