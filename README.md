@@ -7,8 +7,6 @@ A discord bot template for [discord.js](https://discord.js.org/#/) in TypeScript
 * [Node.js](https://nodejs.org/en/) (v16.9.0 or higher)
 ### Installation
 1. Download the project and use or `pnpm install` or `npm install`. I recommend installing pnpm which you can do by running `npm install -g pnpm `
-2. Setup a `.env` file with your bot key and app id.
-   >Follow [this guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html) on how to create your bot if you need to.
 2. Follow [this guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html) on how to create your bot if you need to. Add all Privileged Gateway Intents.
 3. Setup a `.env` file with your bot key and app id.
 ```env
